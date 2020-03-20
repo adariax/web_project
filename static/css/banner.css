@@ -1,0 +1,21 @@
+@import url('fonts.css');
+
+.upper_banner {
+    background: #ffe753;
+    border: #d2be69;
+}
+.upper_banner:hover {
+    box-shadow: 0 0 2vh #d2be69;
+}
+
+.banner_heading {
+    font-family: ljk_Applemelon;
+    font-size: 6vh; /* Nvw - N percent of the viewpoint width */
+
+    color: rgb(63, 155, 234);
+
+    padding: 1.25vh;
+    margin-left: 5vw;
+
+    text-shadow: 0.03em 0.03em 0 #050005, -0.03em -0.03em 0 #050005, -0.03em 0.03em 0 #050005, 0.0625em -0.0625em 0 #050005;
+}
