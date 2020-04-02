@@ -1,0 +1,22 @@
+@import url('fonts.css');
+
+.wrapper {
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1600px;
+    min-height: 100vh;
+
+    background-color: white;
+
+    box-shadow: 3px 0 10px rgba(17, 38, 47, 0.25), -3px 0 10px rgba(17, 38, 47, 0.25);
+}
+
+footer {
+    width: 100%;
+    height: 50px;
+    bottom: 0;
+    padding: 5vh;
+
+    background-color: #3f9bea;
+    box-shadow: 0 -3px 10px rgba(17, 38, 47, 0.25);
+}

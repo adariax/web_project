@@ -9,9 +9,15 @@
     <link rel="stylesheet" href="../static/css/style.css">
     <title>{{ title }}</title>
 </head>
-<body>
-<div class="upper_banner">
-    <h1 class="banner_heading">Селёдка<sup>2</sup></h1>
+<body style="background-color: rgba(63,155,234,0.25)">
+    <nav class="navbar navbar-light" style="background-color: #ffe753; box-shadow: 0 3px 10px rgba(17, 38, 47, 0.25);">
+      <a class="navbar-brand" href="#"><h1 class="header_text">Селёдка²</h1></a>
+    </nav>
+<div class="wrapper">
+    {% block content %}{% endblock %}
 </div>
+<footer>
+
+</footer>
 </body>
 </html>
