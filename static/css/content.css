@@ -6,17 +6,44 @@
     max-width: 1600px;
     min-height: 100vh;
 
-    background-color: white;
-
     box-shadow: 3px 0 10px rgba(17, 38, 47, 0.25), -3px 0 10px rgba(17, 38, 47, 0.25);
+
+    clear: both;
 }
 
 footer {
     width: 100%;
-    height: 50px;
+    height: 100px;
+
+    position: relative;
     bottom: 0;
-    padding: 5vh;
+
+    padding: 2vh;
 
     background-color: #3f9bea;
     box-shadow: 0 -3px 10px rgba(17, 38, 47, 0.25);
+}
+
+.content {
+    background-color: white;
+    border: 0.5vw solid white;
+    border-radius: 3vw;
+
+    box-shadow: 0 -3px 10px rgba(17, 38, 47, 0.25);
+
+    max-width: 650px;
+
+    padding: 2vw;
+}
+
+.cont_img {
+    display: block;
+    object-fit: cover;
+
+    width: 100%;
+
+    border: 0 solid white;
+    border-radius: 2vw;
+
+    padding: 0.5vw;
 }
