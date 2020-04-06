@@ -10,9 +10,10 @@ app.config.from_object(DevConfig)
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-login_manager = LoginManager(app)
+# login_manager = LoginManager(app)
 
 from app import models
+
 
 def get_db_session() -> db.Session:
     return db.session

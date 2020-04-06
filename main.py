@@ -1,6 +1,6 @@
-from load_palletes_from_lospec import loading
+from load_palletes_from_lospec import load_palettes
 
-from flask import make_response, jsonify
+from flask import make_response, jsonify, render_template
 
 from app import app
 
@@ -8,8 +8,8 @@ from app import app
 @app.route('/')
 @app.route('/index')
 def index():
-    return make_response(jsonify({'page': 'page'}))
+    return render_template('base.html')
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run()

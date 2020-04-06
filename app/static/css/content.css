@@ -6,7 +6,7 @@
     max-width: 1600px;
     min-height: 100vh;
 
-    box-shadow: 3px 0 10px rgba(17, 38, 47, 0.25), -3px 0 10px rgba(17, 38, 47, 0.25);
+    /* box-shadow: 3px 0 10px rgba(17, 38, 47, 0.25), -3px 0 10px rgba(17, 38, 47, 0.25); */
 
     clear: both;
 }

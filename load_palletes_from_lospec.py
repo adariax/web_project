@@ -1,4 +1,4 @@
-def loading():
+def load_palettes():
     from requests import get
     from app import get_db_session
     from app.models import Palette
