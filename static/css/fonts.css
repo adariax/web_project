@@ -1,0 +1,20 @@
+@font-face {
+    font-family: FuturaM;
+    src: url('../fonts/FuturaMedium.ttf');
+   }
+
+@font-face {
+    font-family: FuturaMediumItalic;
+    src: url('../fonts/FuturaMediumItalic.otf');
+   }
+
+@font-face {
+    font-family: FuturaBook;
+    src: url('../fonts/FuturaMediumItalic.otf');
+   }
+
+
+@font-face {
+    font-family: ljk_Applemelon;
+    src: url('../fonts/ljk_Applemelon.ttf')
+}

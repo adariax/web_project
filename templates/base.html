@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="../static/img/favicon.png" >
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>{{ title }}</title>
+</head>
+<body style="background-color: rgba(197,242,255,0.25)" link="#000000">
+    <nav class="navbar navbar-light" style="background-color: #ffe753; box-shadow: 0 3px 10px rgba(17, 38, 47, 0.25);">
+      <a class="navbar-brand" href="#"><h1 class="header_text">Селёдка²</h1></a>
+    </nav>
+<div class="wrapper">
+    {% block content %}{% endblock %}
+</div>
+<footer>
+<p>
+    <a class="navbar-brand" href="https://vk.com/squared_fish">
+    <img src="../static/img/vk_logo.png" width="30" height="30" alt="VK">
+    </a>
+    <a href="https://vk.com/squared_fish" style="color: #050005">Сообщество ВКонтакте</a>
+</p>
+</footer>
+</body>
+</html>

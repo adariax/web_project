@@ -1,0 +1,14 @@
+@import url('fonts.css');
+
+.header_text {
+    font-family: ljk_Applemelon;
+    font-size: 5vh; /* Nvw - N percent of the viewpoint width */
+
+    color: #3f9bea;
+
+    padding-top: 1vh;
+    padding-left: 4vh;
+    margin-right: auto;
+
+    text-shadow: 0.03em 0.03em 0 #050005, -0.03em -0.03em 0 #050005, -0.03em 0.03em 0 #050005, 0.0625em -0.0625em 0 #050005;
+}
