@@ -14,6 +14,10 @@ migrate = Migrate(app, db)
 
 from app import models
 
+with app.app_context():
+    if db.engine.url.drivername == 'sqlite':
+        migrate.init_app(app, db, render_as_batch=True)
+
 
 def get_db_session() -> db.Session:
     return db.session

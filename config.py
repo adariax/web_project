@@ -4,6 +4,8 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///static\\db\\db.sqlite'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    VK_ACCESS_TOKEN = 'abb213b4abb213b4abb213b449abc27f06aabb2abb213b4f538bde403c220e6ff51b12f'
+
 
 class DevConfig(Config):
     TESTING = False

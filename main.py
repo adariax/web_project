@@ -1,4 +1,5 @@
 from load_palletes_from_lospec import load_palettes
+from posts import load_posts
 
 from flask import make_response, jsonify, render_template
 

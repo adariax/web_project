@@ -4,13 +4,18 @@ def load_palettes():
     from app.models import Palette
 
     LOSPEC_URL = 'https://lospec.com/palette-list/load?'
+
     is_empty = lambda res: False if res else True
 
     session = get_db_session()
     all_palettes_slugs = list(map(lambda slug: slug[0], session.query(Palette.slug).all()))
-    titles, number = [], 1
-    res = get(f'{LOSPEC_URL}colorNumberFilterType=any&colorNumber=8&page=0&tag=&sortingType=newest').json()
-    while not is_empty(res['palettes']):
+    titles, number = [], 0
+    while True:
+        res = get(f'{LOSPEC_URL}colorNumberFilterType=any&colorNumber=8&page={number}&tag=&sortingType=newest').json()
+        if is_empty(res['palettes']):
+            session.commit()
+            print('Palettes were successfully added into a database')
+            return
         for palette in res['palettes']:
             if palette['slug'] not in all_palettes_slugs:
                 new_pal = Palette(
@@ -23,11 +28,8 @@ def load_palettes():
                 session.commit()
                 print('Palette was successfully added into a database')
                 return
-        res = get(f'{LOSPEC_URL}colorNumberFilterType=any&colorNumber=8&page={number}&tag=&sortingType=newest').json()
         number += 1
-    session.commit()
-    print('Palettes were successfully added into a database')
 
 
 if __name__ == '__main__':
-    loading()
+    load_palettes()
