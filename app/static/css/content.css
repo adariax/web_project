@@ -1,27 +1,12 @@
 @import url('fonts.css');
 
 .wrapper {
-    padding: 0;
-    margin: 0 auto;
-
-    max-width: 1600px;
-    min-height: 100vh;
-
-    /* box-shadow: 3px 0 10px rgba(17, 38, 47, 0.25), -3px 0 10px rgba(17, 38, 47, 0.25); */
-
-    clear: both;
-    display: table;
-    flex-direction: column;
-
-    align-content: center;
-    align-items: center;
-
-    vertical-align: top;
+    min-height: 80vh;
 }
 
 footer {
     width: 100%;
-    height: 100px;
+    height: 20vh;
 
     position: relative;
     bottom: 0;
@@ -30,61 +15,4 @@ footer {
 
     background-color: #3f9bea;
     box-shadow: 0 -3px 10px rgba(17, 38, 47, 0.25);
-}
-
-.content {
-    background-color: white;
-
-    border: 0.5vw solid white;
-    border-radius: 3vw;
-
-    box-shadow: 0 0 10px rgba(17, 38, 47, 0.25);
-
-    padding: 2vw;
-    margin: 1.5vh;
-    float: top;
-
-    max-width: 800px;
-
-    align-items: center;
-    align-self: center;
-}
-
-.cont_img {
-    display: inline-block;
-
-    border: 0 solid white;
-    border-radius: 2vw;
-
-    padding: 0.5vw;
-
-    align-items: center;
-    float: top;
-
-    width: 100%;
-    min-width: auto;
-    min-height: auto;
-}
-
-.vk_link {
-    width: 100%;
-
-    font-family: FuturaM;
-    font-size: 1.5vw;
-    color: #3f9bea;
-
-    background-color: rgba(216,73,133,0);
-
-    border: 0.125vw solid #3f9bea;
-    border-radius: 7px;
-
-    display: inline-block;
-
-    padding: 0.25vw;
-    margin: 0.25vw;
-}
-
-.vk_link:hover {
-    color: white;
-    background-color: #3f9bea;
 }

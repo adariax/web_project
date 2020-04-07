@@ -1,0 +1,63 @@
+@import url('fonts.css');
+
+.s-button {
+    width: 100%;
+
+    font-family: FuturaM;
+    font-size: 1.5vw;
+    color: #050505;
+
+    background-color: rgba(5, 5, 5, 0);
+
+    border: 0.125vw solid #050505;
+    border-radius: 7px;
+
+    display: inline-block;
+
+    padding: 0.25vw;
+    margin: 0.25vw;
+}
+
+.s-button:hover {
+    color: white;
+    background-color: #050505;
+}
+
+.blue {
+    color: #3f9bea;
+    border-color: #3f9bea;
+}
+
+.blue:hover {
+    background-color: #3f9bea;
+}
+
+
+.pink {
+    color: #d84985;
+    border-color: #d84985;
+}
+
+.pink:hover {
+    background-color: #d84985;
+}
+
+
+.yellow {
+    color: #ffe753;
+    border-color: #ffe753;
+}
+
+.yellow:hover {
+    background-color: #ffe753;
+}
+
+
+.green {
+    color: #70db4c;
+    border-color: #70db4c;
+}
+
+.green:hover {
+    background-color: #70db4c;
+}

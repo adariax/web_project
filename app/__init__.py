@@ -22,8 +22,8 @@ with app.app_context():
 def get_db_session() -> db.Session:
     return db.session
 
-# login_manager = LoginManager(app)
 
+login_manager = LoginManager(app)
 
 from app.data import posts_api
 
