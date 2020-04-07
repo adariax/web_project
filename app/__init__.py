@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
 from flask_migrate import Migrate
+from flask_login import LoginManager
+from flask_restful import Api
 
 from config import DevConfig
 
@@ -10,7 +11,6 @@ app.config.from_object(DevConfig)
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-# login_manager = LoginManager(app)
 
 from app import models
 
@@ -21,3 +21,11 @@ with app.app_context():
 
 def get_db_session() -> db.Session:
     return db.session
+
+# login_manager = LoginManager(app)
+
+
+from app.data import posts_api
+
+api = Api(app)
+api.add_resource(posts_api.PostsResource, '/api/posts')

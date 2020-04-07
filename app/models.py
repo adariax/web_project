@@ -1,4 +1,5 @@
 from app import db
+from sqlalchemy_serializer import SerializerMixin
 
 
 class Palette(db.Model):
@@ -11,11 +12,10 @@ class Palette(db.Model):
         return '<Palette {}>'.format(self.title)
 
 
-class Post(db.Model):
+class Post(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     vk_id = db.Column(db.Integer, index=True, nullable=False)
     photo_url = db.Column(db.String, nullable=False)
-    description = db.Column(db.String)
     palette = db.Column(db.Integer, db.ForeignKey('palette.id'))
 
     def __repr__(self):

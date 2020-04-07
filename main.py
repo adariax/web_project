@@ -3,13 +3,15 @@ from posts import load_posts
 
 from flask import make_response, jsonify, render_template
 
-from app import app
+from app import app, get_db_session
+from app.models import Post
 
 
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('base.html')
+    posts = get_db_session().query(Post).all()
+    return render_template('all_posts.html', title='Главная', posts=posts)
 
 
 if __name__ == '__main__':

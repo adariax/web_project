@@ -39,7 +39,6 @@ def load_posts():
                 continue
             post = Post(
                 vk_id=item['id'],
-                description=item['text'],
                 photo_url=item['attachments'][0]['photo']['photo_807']
                 if 'photo_807' in item['attachments'][0]['photo'].keys()
                 else item['attachments'][0]['photo']['photo_604']
