@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<div class="row" style="background-color: white">
+    <div class="col-lg border" id="left"></div>
+    <div class="col-lg border" id="right"></div>
+</div>
 <template id="content-block">
-    <div class="content">
-        <img class="cont_img">
-        <p></p>
+    <div class="card" style="width: 100%;">
+      <img class="card-img-top">
+      <div class="card-body">
         <a class="vk_link">Перейти к источнику</a>
+      </div>
     </div>
 </template>
 

@@ -16,15 +16,20 @@ function loader() {
             type: 'GET',
         }
     ).done(function (data) {
-        let wrapper = $('.wrapper');
         let posts = data.posts;
-        for (let n = page; n <= page + 5; ++n) {
-            let content = $(
-                document.querySelector('template#content-block').content).children('div').clone();
-            content.children('img').attr('src', posts[n].photo_url);
-            content.children('a').attr('href', 'https://vk.com/squared_fish?w=wall-112055138_' + posts[n].vk_id);
-            wrapper.append(content);
+        let leftCol = $('#left');
+        let rightCol = $('#right');
+        for (let n = page; n <= page + 10; ++n) {
+            let card = $(document.querySelector('template#content-block').content).children('.card').clone();
+            card.children('img').attr('src', posts[n].photo_url);
+            card.children('div').children('a').attr('href', 'https://vk.com/squared_fish?w=wall-112055138_' + posts[n].vk_id);
+            if (n % 2 == 0) {
+                leftCol.append(card);
+
+            } else {
+                rightCol.append(card);
+            }
         }
-        page += 6;
+        page += 11;
     })
 }
