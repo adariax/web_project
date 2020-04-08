@@ -6,7 +6,7 @@
         <h5 class="card-title">Регистрация</h5>
         <form action="" method="post">
             {{ form.hidden_tag() }}
-            <p>
+            <p id="login-div">
                 {{ form.nickname.label }}<br>
                 {{ form.nickname(class="form-control", id="login") }}<br>
                 {% for error in form.nickname.errors %}
@@ -15,7 +15,7 @@
             </div>
                 {% endfor %}
             </p>
-            <p>
+            <p id="password-div">
                 {{ form.password.label }}<br>
                 {{ form.password(class="form-control", type="password", id="password") }}<br>
                 {% for error in form.password.errors %}
@@ -35,11 +35,11 @@
             </p>
             {% if submit_button %}
                 <p>{{ form.submit(type="submit", class="s-button") }}</p>
-            {% else %}
-                <p>Завершить регистрацию</p>
-                <button class="s-button blue" onclick="vk_login()">Привязать страницу ВКонтакте</button>
-            {% endif %}
-        </form>
+            </form>
+        {% else %}
+                <p class="s-button blue" onclick="vk_login()" style="text-align: center">Привязать страницу ВКонтакте</p>
+                </form>
+        {% endif %}
     </div>
 </div>
 <script src="../static/js/registration.js"></script>

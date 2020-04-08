@@ -52,8 +52,8 @@ def registration():
     return render_template('registration.html', title='Регистрация', form=form, submit_button=False)
 
 
-@app.route('/end_registration#<args>', methods=['GET', 'POST'])
-def end_registration(args):
+@app.route('/end_registration', methods=['GET', 'POST'])
+def end_registration():
     form = RegisterForm()
     return render_template('registration.html', title='Регистрация', form=form, submit_button=True)
 
