@@ -8,7 +8,7 @@
             {{ form.hidden_tag() }}
             <p>
                 {{ form.nickname.label }}<br>
-                {{ form.nickname(class="form-control") }}<br>
+                {{ form.nickname(class="form-control", id="login") }}<br>
                 {% for error in form.nickname.errors %}
             <div class="alert alert-danger" role="alert">
                 {{ error }}
@@ -17,7 +17,7 @@
             </p>
             <p>
                 {{ form.password.label }}<br>
-                {{ form.password(class="form-control", type="password") }}<br>
+                {{ form.password(class="form-control", type="password", id="password") }}<br>
                 {% for error in form.password.errors %}
             <div class="alert alert-danger" role="alert">
                 {{ error }}
@@ -26,16 +26,21 @@
             </p>
             <p>
                 {{ form.password_again.label }}<br>
-                {{ form.password_again(class="form-control", type="password") }}<br>
+                {{ form.password_again(class="form-control", type="password", id="password_a") }}<br>
                 {% for error in form.password_again.errors %}
             <div class="alert alert-danger" role="alert">
                 {{ error }}
             </div>
                 {% endfor %}
             </p>
-            <p>{{ form.submit(type="submit", class="s-button") }}</p>
-            <div>{{ message }}</div>
+            {% if submit_button %}
+                <p>{{ form.submit(type="submit", class="s-button") }}</p>
+            {% else %}
+                <p>Завершить регистрацию</p>
+                <button class="s-button blue" onclick="vk_login()">Привязать страницу ВКонтакте</button>
+            {% endif %}
         </form>
     </div>
 </div>
+<script src="../static/js/registration.js"></script>
 {% endblock %}
