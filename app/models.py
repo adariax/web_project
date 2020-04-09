@@ -28,7 +28,7 @@ class User(db.Model, UserMixin, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nickname = db.Column(db.String, unique=True)
     hashed_password = db.Column(db.String)
-    vk_domain = db.Column(db.String)
+    vk_domain = db.Column(db.String, unique=True)
     access_token = db.Column(db.String, nullable=True)
     is_admin = db.Column(db.Boolean)
 

@@ -1,12 +1,13 @@
-const domen = "http://85f6ffb6.ngrok.io";
+const domain = "https://f6454672.ngrok.io";
 
-window.onload = getAccessToken();
+window.onload = registration();
 
 function vk_login() {
-    let uri = domen + '/end_registration';
-    console.log(uri);
+    let uri = domain + '/registration';
+    let login = document.getElementById('login').value;
+    let password = document.getElementById('password').value;
     if (validate() == true) {
-        window.location.href = `https://oauth.vk.com/authorize?client_id=7367858&redirect_uri=${uri}&display=popup&scope=offline,wall,groups&response_type=token&revoke=1`;
+        window.location.href = `https://oauth.vk.com/authorize?client_id=7367858&redirect_uri=${uri}&display=popup&scope=offline,wall,groups&response_type=token&revoke=1&state=${login},${password}`;
     }
 }
 
@@ -15,13 +16,15 @@ function validate() {
     let password = document.getElementById('password').value;
     let password_again = document.getElementById('password_a').value;
 
+    let validation = true;
+
     if (login.length == 0) {
         if ($('#error-l-empty').length == 0) {
             let error = createError('Поле не заполнено');
             $(error).attr('id', 'error-l-empty');
             $('#login-div').append(error);
         }
-        return false
+        validation = false
     } else {
         $('#error-l-empty').remove();
     }
@@ -32,7 +35,7 @@ function validate() {
             $(error).attr('id', 'error-p-empty');
             $('#password-div').append(error);
         }
-        return false
+        validation = false
     } else {
         $('#error-p-empty').remove();
     }
@@ -47,10 +50,13 @@ function validate() {
             $(error).attr('id', 'error-login');
             $('#login-div').append(error);
         }
-        return false
     }).fail(function () {
         $('#error-login').remove();
     });
+
+    if ($('#error-login').length) {
+        validation = false
+    }
 
     if (password != password_again) {
         if ($('#error-password').length == 0) {
@@ -58,11 +64,11 @@ function validate() {
             error.attr('id', 'error-password');
             $('#password-div').append(error);
         }
-        return false
+        validation = false
     } else {
         $('#error-password').remove();
     }
-    return true
+    return validation
 }
 
 function createError(message) {
@@ -75,20 +81,40 @@ function createError(message) {
     return error
 }
 
-function getAccessToken() {
+function registration() {
     if (window.location.hash != '') {
-        let hash = window.location.hash.slice(1).split('&');
-        let access_token = hash[0];
-        let user_id = hash[2];
-        console.log(hash);
-        $.ajax({
-                url: "/api/access_token",
+        let info = getInfo();
+        if (info) {
+            $.ajax({
+                url: '/api/users',
                 type: 'POST',
                 data: {
-                    'access_token': access_token.split('=')[1],
-                    'user_id': user_id.split('=')[1]
+                    'nickname': info['login'],
+                    'password': info['password'],
+                    'accessToken': info['accessToken'],
+                    'vkDomain': info['vkDomain'],
                 }
-            }
-        )
+            }).done(function () {
+                window.location.href = domain + '/login'
+            }).fail(function () {
+                alert('Этот аккаунт уже зарегистрирован');
+            });
+        }
+    }
+}
+
+function getInfo() {
+    let hash = window.location.hash.slice(1).split('&');
+    window.location.hash = '';
+    let accessToken = hash[0].split('=')[1];
+    let userId = hash[2].split('=')[1];
+    let regInfo = hash[3].split('=')[1].split(',');
+    let login = regInfo[0];
+    let password = regInfo[1];
+    return {
+        'login': login,
+        'password': password,
+        'accessToken': accessToken,
+        'vkDomain': userId,
     }
 }

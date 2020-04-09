@@ -1,12 +1,11 @@
 from load_palletes_from_lospec import load_palettes
 from posts import load_posts
-
-from requests import get
+from check_user import is_admin
 
 from flask import render_template, redirect
 from flask_login import login_required, logout_user, login_user
 
-from app import app, get_db_session, login_manager, session
+from app import app, get_db_session, login_manager
 from app.models import Post, User
 from app.forms import RegisterForm, LoginForm
 
@@ -49,13 +48,7 @@ def login():
 @app.route('/registration', methods=['GET', 'POST'])
 def registration():
     form = RegisterForm()
-    return render_template('registration.html', title='Регистрация', form=form, submit_button=False)
-
-
-@app.route('/end_registration', methods=['GET', 'POST'])
-def end_registration():
-    form = RegisterForm()
-    return render_template('registration.html', title='Регистрация', form=form, submit_button=True)
+    return render_template('registration.html', title='Регистрация', form=form)
 
 
 if __name__ == '__main__':

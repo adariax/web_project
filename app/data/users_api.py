@@ -3,6 +3,8 @@ from flask_restful import Resource
 
 from app import get_db_session
 from app.models import User
+from app.data.parser import user_parser as parser
+from check_user import is_admin
 
 
 class UsersResource(Resource):
@@ -11,6 +13,22 @@ class UsersResource(Resource):
         users = session.query(User).all()
         return jsonify({'users': user.to_dict(only=('nickname', 'vk_domain'))
                         for user in users})
+
+    def post(self):
+        arg = parser.parse_args()
+        session = get_db_session()
+        if session.query(User).filter(User.vk_domain == arg['vkDomain']).first():
+            return make_response(jsonify({'error': 'this VK account has already registered'}), 400)
+        user = User(
+            nickname=arg['nickname'],
+            vk_domain=arg['vkDomain'],
+            access_token=arg['accessToken'],
+            is_admin=is_admin(arg['vkDomain'], arg['accessToken'])
+        )
+        user.set_password(arg['password'])
+        session.add(user)
+        session.commit()
+        return jsonify({'success': 'OK'})
 
 
 blueprint = Blueprint('rest_api', __name__, template_folder='templates')
@@ -30,3 +48,9 @@ def check_id(vk_id):
     user = session.query(User).filter(User.vk_domain == vk_id).first()
     return jsonify({'response': 'current account has already register'}) if user \
         else make_response(jsonify({"error": "account with this id doesn't exist"}), 404)
+
+
+@blueprint.route('/api/user/is_admin/<params>')
+def check_is_admin(params):
+    info = params.split('&')
+    return jsonify({'response': True}) if is_admin(*info) else jsonify({"response": False})

@@ -1,15 +1,13 @@
-from flask import Flask, session
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_restful import Api
-from flask_ngrok import run_with_ngrok
 
 from config import DevConfig
 
 app = Flask(__name__)
 app.config.from_object(DevConfig)
-run_with_ngrok(app)
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -27,12 +25,10 @@ def get_db_session() -> db.Session:
 
 login_manager = LoginManager(app)
 
-from app.data import posts_api, registration_api, users_api
+from app.data import posts_api, users_api
 
 api = Api(app)
 api.add_resource(users_api.UsersResource, '/api/users')
 api.add_resource(posts_api.PostsResource, '/api/posts')
-api.add_resource(registration_api.RegistrationSessionResource, '/api/registration_session')
-api.add_resource(registration_api.AccessTokenResource, '/api/access_token')
 
 app.register_blueprint(users_api.blueprint)
