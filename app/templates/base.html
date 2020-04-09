@@ -16,7 +16,15 @@
 </head>
 <body style="background-color: rgba(197,242,255,0.25); overflow: auto;" link="#000000">
     <nav class="navbar navbar-light" style="background-color: #ffe753; box-shadow: 0 3px 10px rgba(17, 38, 47, 0.25);">
-      <a class="navbar-brand" href="#"><h1 class="header_text">Селёдка²</h1></a>
+      <a class="navbar-brand" href="/" style="margin-right: auto"><h1 class="header_text">Селёдка²</h1></a>
+        {% if current_user.is_authenticated %}
+        <a class="navbar-brand nickname" href="/logout">{{ current_user.nickname }}</a>
+        {% else %}
+        <p>
+            <a class="btn btn-primary r-pink" href="/registration">Зарегистрироваться</a>
+            <a class="btn btn-primary r-blue" href="/login">Войти</a>
+        </p>
+        {% endif %}
     </nav>
 <div class="container wrapper">
     {% block content %}{% endblock %}

@@ -12,3 +12,8 @@
 
     text-shadow: 0.03em 0.03em 0 #050005, -0.03em -0.03em 0 #050005, -0.03em 0.03em 0 #050005, 0.0625em -0.0625em 0 #050005;
 }
+
+.nickname {
+    font-family: FuturaMediumItalic;
+    font-size: 1.75vw;
+}

@@ -1,6 +1,5 @@
 from load_palletes_from_lospec import load_palettes
 from posts import load_posts
-from check_user import is_admin
 
 from flask import render_template, redirect
 from flask_login import login_required, logout_user, login_user
@@ -19,8 +18,7 @@ def load_user(user_id):
 @app.route('/')
 @app.route('/index')
 def index():
-    posts = get_db_session().query(Post).all()
-    return render_template('all_posts.html', title='Главная', posts=posts)
+    return render_template('all_posts.html', title='Главная')
 
 
 @app.route('/logout')

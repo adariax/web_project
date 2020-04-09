@@ -32,6 +32,17 @@
     background-color: #3f9bea;
 }
 
+.r-blue {
+    color: white;
+    background-color: #3f9bea;
+    border-color: #3f9bea;
+}
+
+.r-blue:hover {
+    background-color: #44a9fe;
+    border-color: #3f9bea;
+}
+
 
 .pink {
     color: #d84985;
@@ -42,22 +53,13 @@
     background-color: #d84985;
 }
 
-
-.yellow {
-    color: #ffe753;
-    border-color: #ffe753;
+.r-pink {
+    color: white;
+    background-color: #d84985;
+    border-color: #d84985;
 }
 
-.yellow:hover {
-    background-color: #ffe753;
-}
-
-
-.green {
-    color: #70db4c;
-    border-color: #70db4c;
-}
-
-.green:hover {
-    background-color: #70db4c;
+.r-pink:hover {
+    background-color: #ec4a98;
+    border-color: #d84985;
 }
