@@ -5,8 +5,8 @@ from flask import render_template, redirect
 from flask_login import login_required, logout_user, login_user
 
 from app import app, get_db_session, login_manager
-from app.models import Post, User
-from app.forms import RegisterForm, LoginForm
+from app.models import User
+from app.forms import RegisterForm, LoginForm, PostForm
 
 
 @login_manager.user_loader
@@ -47,6 +47,13 @@ def login():
 def registration():
     form = RegisterForm()
     return render_template('registration.html', title='Регистрация', form=form)
+
+
+@app.route('/new_post', methods=['GET', 'POST'])
+@login_required
+def create_post():
+    form = PostForm()
+    return render_template('new_post.html', title='Новая запись', form=form)
 
 
 if __name__ == '__main__':

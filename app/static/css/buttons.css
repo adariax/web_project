@@ -4,7 +4,7 @@
     width: 100%;
 
     font-family: FuturaM;
-    font-size: 1.5vw;
+    font-size: 2vh;
     color: #050505;
 
     background-color: rgba(5, 5, 5, 0);
@@ -14,8 +14,9 @@
 
     display: inline-block;
 
-    padding: 0.25vw;
-    margin: 0.25vw;
+    padding: 0.5vw;
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
 }
 
 .s-button:hover {
@@ -62,4 +63,43 @@
 .r-pink:hover {
     background-color: #ec4a98;
     border-color: #d84985;
+}
+
+
+.green {
+    color: #0bb5a6;
+    border-color: #0bb5a6;
+}
+
+.green:hover {
+    background-color: #0bb5a6;
+}
+
+.r-green {
+    color: white;
+    background-color: #0bb5a6;
+    border-color: #0bb5a6;
+}
+
+.r-green:hover {
+    background-color: #0bc9ba;
+    border-color: #0bb5a6;
+}
+
+input[type=file] {
+    content: "Выбрать файл";
+    font-family: FuturaMediumItalic;
+    font-size: 1.5vh;
+    color: #0bb5a6;
+
+    background-color: rgba(5, 5, 5, 0);
+
+    border: 0.125vw solid #0bb5a6;
+    border-radius: 7px;
+
+    display: inline-block;
+
+    padding: 1vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }

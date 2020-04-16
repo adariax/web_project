@@ -16,3 +16,13 @@ footer {
     background-color: #3f9bea;
     box-shadow: 0 -3px 10px rgba(17, 38, 47, 0.25);
 }
+
+.post_info {
+    margin-top: 1vh;
+    margin-right: 1vh;
+    margin-bottom: 1vh;
+
+    border-radius: 7px;
+
+    font-family: FuturaMediumItalic;
+}

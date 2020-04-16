@@ -5,7 +5,7 @@ let page = 0;
 window.onload = loader();
 
 function scrolling() {
-    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+    if ($(window).scrollTop() === $(document).height() - $(window).height()) {
         loader();
     }
 }
