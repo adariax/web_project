@@ -15,8 +15,14 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="../static/css/style.css">
     <title>{{ title }}</title>
+    <script src="https://vk.com/js/api/openapi.js?167" type="text/javascript"></script>
 </head>
 <body style="background-color: rgba(197,242,255,0.25); overflow: auto;" link="#000000">
+<script type="text/javascript">
+  VK.init({
+    apiId: 	7417095
+  });
+</script>
     <nav class="navbar navbar-light" style="background-color: #ffe753; box-shadow: 0 3px 10px rgba(17, 38, 47, 0.25);">
       <a class="navbar-brand" href="/" style="margin-right: auto"><h1 class="header_text">Селёдка²</h1></a>
         {% if current_user.is_authenticated %}
@@ -27,6 +33,8 @@
             <a class="btn btn-primary r-blue" href="/login">Войти</a>
         </p>
         {% endif %}
+        <h6 hidden="true" id="group_id">{{ group_id }}</h6>
+        <h6 hidden="true" id="client_id">{{ client_id }}</h6>
     </nav>
 <div class="container wrapper">
     {% block content %}{% endblock %}

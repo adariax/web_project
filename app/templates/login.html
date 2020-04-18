@@ -2,32 +2,12 @@
 
 {% block content %}
 <div class="card mt-3" style="width: 100%; height: 80%;">
-    <div class="card-body" style="height: 80%;">
-        <h5 class="card-title">Вход</h5>
-        <form action="" method="post">
-            {{ form.hidden_tag() }}
-            <p>
-                {{ form.nickname.label }}<br>
-                {{ form.nickname(class="form-control") }}<br>
-                {% for error in form.nickname.errors %}
-            <div class="alert alert-danger" role="alert">
-                {{ error }}
-            </div>
-            {% endfor %}
-            </p>
-            <p>
-                {{ form.password.label }}<br>
-                {{ form.password(class="form-control", type="password") }}<br>
-                {% for error in form.password.errors %}
-            <div class="alert alert-danger" role="alert">
-                {{ error }}
-            </div>
-                {% endfor %}
-            </p>
-            <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-            <p>{{ form.submit(type="submit", class="s-button blue") }}</p>
-            <div>{{ message }}</div>
-        </form>
-    </div>
+    {% if message %}
+    <h4 style="align-self: center; margin-top: 3vh">{{ message }}</h4>
+    {% endif %}
+    <div id="vk_auth" style="width: 100%; align-self: center; margin: 3vh 0 3vh 0"></div>
+    <script type="text/javascript">
+      VK.Widgets.Auth("vk_auth", {"authUrl":"/login", "width": "500"});
+    </script>
 </div>
 {% endblock %}

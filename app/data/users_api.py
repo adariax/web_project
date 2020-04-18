@@ -1,5 +1,6 @@
 from flask import jsonify, Blueprint, make_response
 from flask_restful import Resource
+from flask_login import current_user
 
 from app import get_db_session
 from app.models import User
@@ -9,10 +10,7 @@ from check_user import is_admin
 
 class UsersResource(Resource):
     def get(self):
-        session = get_db_session()
-        users = session.query(User).all()
-        return jsonify({'users': user.to_dict(only=('nickname', 'vk_domain'))
-                        for user in users})
+        return jsonify(current_user.to_dict())
 
     def post(self):
         arg = parser.parse_args()
@@ -25,7 +23,6 @@ class UsersResource(Resource):
             access_token=arg['accessToken'],
             is_admin=is_admin(arg['vkDomain'], arg['accessToken'])
         )
-        user.set_password(arg['password'])
         session.add(user)
         session.commit()
         return jsonify({'success': 'OK'})

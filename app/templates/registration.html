@@ -9,29 +9,6 @@
             <p id="login-div">
                 {{ form.nickname.label }}<br>
                 {{ form.nickname(class="form-control", id="login") }}<br>
-                {% for error in form.nickname.errors %}
-            <div class="alert alert-danger" role="alert">
-                {{ error }}
-            </div>
-                {% endfor %}
-            </p>
-            <p id="password-div">
-                {{ form.password.label }}<br>
-                {{ form.password(class="form-control", type="password", id="password") }}<br>
-                {% for error in form.password.errors %}
-            <div class="alert alert-danger" role="alert">
-                {{ error }}
-            </div>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.password_again.label }}<br>
-                {{ form.password_again(class="form-control", type="password", id="password_a") }}<br>
-                {% for error in form.password_again.errors %}
-            <div class="alert alert-danger" role="alert">
-                {{ error }}
-            </div>
-                {% endfor %}
             </p>
                 <p class="s-button pink" onclick="vk_login()" style="text-align: center">Зарегистрироваться</p>
         </form>
