@@ -2,21 +2,7 @@
 
 {% block content %}
 <div class="row mt-3 border" style="background-color: white; padding: 1vw">
-    <button class="s-button r-blue" onclick="window.location.href = '/all_posts'">Назад</button>
+    <button class="s-button r-blue" onclick="window.location.href = '/'">Назад</button>
 </div>
-<br>
-<div class="row" style="background-color: white">
-    <div class="col-lg border" id="left"></div>
-    <div class="col-lg border" id="right"></div>
-</div>
-<template id="content-block">
-    <div class="card mt-3" style="width: 100%;">
-      <img class="card-img-top">
-      <div class="card-body">
-        <a class="s-button blue">Перейти к источнику</a>
-      </div>
-    </div>
-</template>
-
-<script src="../static/js/all_posts.js"></script>
+{% include "base_posts.html" %}
 {% endblock %}

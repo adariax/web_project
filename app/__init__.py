@@ -29,6 +29,7 @@ from app.data import posts_api, users_api
 
 api = Api(app)
 api.add_resource(users_api.UsersResource, '/api/users')
+api.add_resource(posts_api.FavPost, '/api/favpost')
 
 app.register_blueprint(users_api.blueprint)
 app.register_blueprint(posts_api.blueprint)

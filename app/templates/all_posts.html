@@ -4,7 +4,7 @@
 {% if current_user.is_authenticated %}
     <div class="row mt-3 border" style="background-color: white; padding: 1vw">
         <button class="s-button r-blue" onclick="window.location.href = '/post'">Добавить новый пост</button>
-        <button class="s-button r-pink" onclick="window.location.href = '/fav_posts'">Перейти в избранные</button>
+        <button class="s-button r-pink" onclick="window.location.href = '/fav_posts'">Перейти в избранное</button>
             {% if current_user.is_admin %}
                 <button class="s-button r-green" onclick="window.location.href = '/login'">Перейти в предложенные записи</button>
                 <button class="s-button r-green" onclick="window.location.href = '/login'">Перейти в отложенные записи</button>
@@ -12,19 +12,5 @@
 
     </div>
 {% endif %}
-<br>
-<div class="row" style="background-color: white">
-    <div class="col-lg border" id="left"></div>
-    <div class="col-lg border" id="right"></div>
-</div>
-<template id="content-block">
-    <div class="card mt-3" style="width: 100%;">
-      <img class="card-img-top">
-      <div class="card-body">
-        <a class="s-button blue">Перейти к источнику</a>
-      </div>
-    </div>
-</template>
-
-<script src="../static/js/all_posts.js"></script>
+{% include "base_posts.html" %}
 {% endblock %}

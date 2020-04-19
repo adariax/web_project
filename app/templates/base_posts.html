@@ -1,0 +1,21 @@
+<br>
+<div class="row" style="background-color: white">
+    <div class="col-lg border" id="left"></div>
+    <div class="col-lg border" id="right"></div>
+</div>
+<template id="content-block">
+    <div class="card mt-3" style="width: 100%;">
+      <img class="card-img-top">
+      <div class="card-body">
+        <a class="s-button blue">Перейти к источнику</a>
+          {% if current_user.is_authenticated %}
+            <button class="s-button r-pink" style="padding: 1vh !important;">
+                <img style="width: 3vh; height: 3vh; margin-right: 2vh; vertical-align: text-bottom" src="../static/img/star.png">
+                В избранное
+            </button>
+          {% endif %}
+      </div>
+    </div>
+</template>
+
+<script src="../static/js/all_posts.js"></script>

@@ -11,8 +11,8 @@ function scrolling() {
 }
 
 function loader() {
-    let postsType= '';
-    switch (window.location.pathname){
+    let postsType = '';
+    switch (window.location.pathname) {
         case '/':
             postsType = 'all';
             break;
@@ -26,8 +26,7 @@ function loader() {
         }
     ).done(function (data) {
         let posts = data.posts;
-        console.log(page, posts.length);
-        if (page >= posts.length + 11){
+        if (page >= posts.length + 11) {
             return
         }
         let leftCol = $('#left');
@@ -39,7 +38,11 @@ function loader() {
             let card = $(document.querySelector('template#content-block').content).children('.card').clone();
             card.children('img').attr('src', posts[n].photo_url);
             card.children('div').children('a').attr('href', 'https://vk.com/squared_fish?w=wall-112055138_' + posts[n].vk_id);
-            if (n % 2 == 0) {
+            if (postsType === 'all') {
+                card.children('div').children('button').addClass('fav');
+                card.children('div').children('button').attr('id', (posts.length - n).toString());
+            }
+            if (n % 2 === 0) {
                 leftCol.append(card);
 
             } else {
@@ -47,6 +50,18 @@ function loader() {
             }
         }
         page = page + 11;
-        console.log(page, posts.length);
     })
 }
+
+$(document).on('click', '.fav', function (event) {
+    let targetElem = $(event.target);
+    if (targetElem.attr('class') === undefined) {
+        targetElem = targetElem.parent('.fav')
+    }
+    let postId = targetElem.attr('id');
+    $.ajax({
+        url: `/api/favpost`,
+        type: 'POST',
+        data: {'post_id': Number(postId)}
+    })
+});
