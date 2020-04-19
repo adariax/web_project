@@ -1,7 +1,7 @@
 from flask import jsonify, Blueprint, request, make_response
 from flask_login import login_required, current_user
 
-from app.models import Post
+from app.models import Post, User
 from app import get_db_session, app
 from app.data.posts import get_attachment
 
@@ -11,7 +11,11 @@ blueprint = Blueprint('posts_rest_api', __name__, template_folder='templates')
 @blueprint.route('/api/posts')
 def get_posts():
     session = get_db_session()
-    posts = session.query(Post).all()
+    post_type = request.args.get('type')
+    if post_type == 'all':
+        posts = session.query(Post).all()
+    elif post_type == 'fav':
+        posts = session.query(User).filter(User.id == current_user.id).first().favors
     return jsonify({'posts': [post.to_dict(only=('id', 'vk_id', 'photo_url'))
                               for post in posts[::-1]]})
 

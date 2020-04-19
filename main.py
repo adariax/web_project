@@ -64,5 +64,13 @@ def create_post():
                            group_id=app.config['VK_GROUP_ID'], client_id=app.config['VK_CLIENT_ID'])
 
 
+@app.route('/fav_posts', methods=['GET', 'POST'])
+@login_required
+def fav_posts():
+    form = PostForm()
+    return render_template('fav_posts.html', title='Избранное', form=form,
+                           group_id=app.config['VK_GROUP_ID'], client_id=app.config['VK_CLIENT_ID'])
+
+
 if __name__ == '__main__':
     app.run()
