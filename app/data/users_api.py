@@ -5,7 +5,7 @@ from flask_login import current_user
 from app import get_db_session
 from app.models import User
 from app.data.parser import user_parser as parser
-from check_user import is_admin
+from app.data.user import is_admin
 
 
 class UsersResource(Resource):
@@ -28,7 +28,7 @@ class UsersResource(Resource):
         return jsonify({'success': 'OK'})
 
 
-blueprint = Blueprint('rest_api', __name__, template_folder='templates')
+blueprint = Blueprint('users_rest_api', __name__, template_folder='templates')
 
 
 @blueprint.route('/api/user/login/<login>')

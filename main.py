@@ -1,5 +1,4 @@
-from load_palletes_from_lospec import load_palettes
-from posts import load_posts
+from loading_posts import load_posts
 
 from flask import render_template, redirect, request
 from flask_login import login_required, logout_user, login_user
@@ -57,11 +56,11 @@ def registration():
                            group_id=app.config['VK_GROUP_ID'], client_id=app.config['VK_CLIENT_ID'])
 
 
-@app.route('/new_post', methods=['GET', 'POST'])
+@app.route('/post', methods=['GET', 'POST'])
 @login_required
 def create_post():
     form = PostForm()
-    return render_template('new_post.html', title='Новая запись', form=form,
+    return render_template('post.html', title='Новая запись', form=form,
                            group_id=app.config['VK_GROUP_ID'], client_id=app.config['VK_CLIENT_ID'])
 
 

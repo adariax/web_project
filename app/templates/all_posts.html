@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="row mt-3 border" style="background-color: white; padding: 1vw">
-    <button class="s-button r-blue" onclick="window.location.href = '/new_post'">Добавить новый пост</button>
+    <button class="s-button r-blue" onclick="window.location.href = '/post'">Добавить новый пост</button>
     <button class="s-button r-pink" onclick="window.location.href = '/login'">Перейти в избранные</button>
     {% if current_user.is_authenticated %}
         {% if current_user.is_admin %}

@@ -1,4 +1,4 @@
-const domain = "https://f1b1203c.ngrok.io";
+const domain = "https://cd50891f.ngrok.io";
 
 window.onload = registration();
 
@@ -9,7 +9,7 @@ function vk_login() {
     let encoder = new TextEncoder();
     let uint8Array = encoder.encode(login);
     if (validate() === true) {
-        window.location.href = `https://oauth.vk.com/authorize?client_id=${clientId}&redirect_uri=${uri}&display=popup&scope=offline,wall,groups&response_type=token&revoke=1&state=${uint8Array}`;
+        window.location.href = `https://oauth.vk.com/authorize?client_id=${clientId}&redirect_uri=${uri}&display=popup&scope=offline,wall,groups,photos&response_type=token&revoke=1&state=${uint8Array}`;
     }
 }
 
@@ -82,7 +82,7 @@ function registration() {
 
 function getInfo() {
     let hash = window.location.hash.slice(1).split('&');
-    // window.location.hash = '';
+    window.location.hash = '';
     let accessToken = hash[0].split('=')[1];
     let userId = hash[2].split('=')[1];
     let loginUtf8 = new Uint8Array(hash[3].split('=')[1].split(',').map(n => parseInt(n, 10)));

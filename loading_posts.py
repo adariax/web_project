@@ -13,6 +13,8 @@ def load_posts():
     session = get_db_session()
     vk_ids = list(map(lambda vk_id: vk_id[0], session.query(Post.vk_id)))
     items, offset = None, 0
+    posts = []
+
     while True:
         params = {'owner_id': '-112055138',
                   'extended': '1',
@@ -24,6 +26,8 @@ def load_posts():
         items = get(VK_API_URL + METHOD, params=params).json()['response']['items']
 
         if is_empty(items):
+            for post in posts[::-1]:
+                session.add(post)
             session.commit()
             print('Posts were successfully added into a database')
             return
@@ -43,10 +47,6 @@ def load_posts():
                 if 'photo_807' in item['attachments'][0]['photo'].keys()
                 else item['attachments'][0]['photo']['photo_604']
             )
-            session.add(post)
+            posts.append(post)
 
         offset += 100
-
-
-if __name__ == '__main__':
-    load_posts()
