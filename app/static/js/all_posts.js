@@ -19,6 +19,9 @@ function loader() {
         case '/fav_posts':
             postsType = 'fav';
             break;
+        case '/sug_posts':
+            postsType = 'sug';
+            break;
     }
     $.ajax({
             url: `/api/posts?type=${postsType}`,
@@ -47,6 +50,11 @@ function loader() {
                     card.children('div').children('button').addClass('unfav');
                     card.children('div').children('button').attr('id', (posts[n].id).toString());
                     card.children('div').children('button').html('Удалить из избранного');
+                    break;
+                case 'sug':
+                    card.children('div').children('button').addClass('sug');
+                    card.children('div').children('button').attr('id', posts[n].vk_id);
+                    card.children('div').children('button').html('Редактировать');
                     break;
             }
             if (n % 2 === 0) {
@@ -86,4 +94,14 @@ $(document).on('click', '.unfav', function (event) {
         data: {'post_id': Number(postId)}
     });
     targetElem.addClass('b-disable');
+});
+
+
+$(document).on('click', '.sug', function (event) {
+    let targetElem = $(event.target);
+    if (targetElem.attr('class') === undefined) {
+        targetElem = targetElem.parent('.sug')
+    }
+    let postId = targetElem.attr('id');
+    console.log('a');
 });

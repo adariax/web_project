@@ -25,11 +25,35 @@ def get_attachment(access_token, data, group_id, user_id):
     return f"photo{photo['response'][0]['owner_id']}_{photo['response'][0]['id']}"
 
 
-# from datetime import datetime, timezone, tzinfo
-# from tzlocal import get_localzone
-# import pytz
-# inp = datetime(2020, 4, 19, 22, datetime.now().minute, datetime.now().second, datetime.now().microsecond)
-# serv = datetime.now()
-# delta = str(serv - inp)
-# delta = delta.split(':')[0] if 'day' not in delta else f"-{delta.split(', ')[1].split(':')[0]}"
-# print(delta)
+def get_suggests(access_token):
+    import requests
+    from app import app
+
+    is_empty = lambda items: False if items else True
+    items, offset = None, 0
+    posts = []
+
+    while True:
+        params = {'owner_id': app.config['VK_GROUP_ID'],
+                  'extended': '1',
+                  'count': '100',
+                  'filter': 'suggests',
+                  'offset': offset,
+                  'access_token': access_token,
+                  'v': '5.2'}
+        items = requests.get(VK_API_URL + 'wall.get', params=params).json()['response']['items']
+
+        if is_empty(items):
+            return posts
+        for item in items:
+            if 'attachments' not in item.keys():
+                continue
+            post = {
+                'vk_id': item['id'],
+                'photo_url': item['attachments'][0]['photo']['photo_807']
+                if 'photo_807' in item['attachments'][0]['photo'].keys()
+                else item['attachments'][0]['photo']['photo_604']
+            }
+            posts.append(post)
+
+        offset += 100

@@ -6,8 +6,7 @@
         <button class="s-button r-blue" onclick="window.location.href = '/post'">Добавить новый пост</button>
         <button class="s-button r-pink" onclick="window.location.href = '/fav_posts'">Перейти в избранное</button>
             {% if current_user.is_admin %}
-                <button class="s-button r-green" onclick="window.location.href = '/login'">Перейти в предложенные записи</button>
-                <button class="s-button r-green" onclick="window.location.href = '/login'">Перейти в отложенные записи</button>
+                <button class="s-button r-green" onclick="window.location.href = '/sug_posts'">Перейти в предложенные записи</button>
             {% endif %}
 
     </div>

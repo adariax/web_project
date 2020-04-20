@@ -5,7 +5,7 @@ from app.data.parser import fav_post_parser as parser
 
 from app.models import Post, User
 from app import get_db_session, app
-from app.data.posts import get_attachment
+from app.data.posts import get_attachment, get_suggests
 
 blueprint = Blueprint('posts_rest_api', __name__, template_folder='templates')
 
@@ -40,6 +40,8 @@ def get_posts():
         posts = session.query(Post).all()
     elif post_type == 'fav':
         posts = session.query(User).filter(User.id == current_user.id).first().favors
+    elif post_type == 'sug':
+        return jsonify({'posts': get_suggests(current_user.access_token)})
     return jsonify({'posts': [post.to_dict(only=('id', 'vk_id', 'photo_url'))
                               for post in posts[::-1]]})
 

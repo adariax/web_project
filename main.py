@@ -73,5 +73,12 @@ def fav_posts():
                            group_id=app.config['VK_GROUP_ID'], client_id=app.config['VK_CLIENT_ID'])
 
 
+@app.route('/sug_posts', methods=['GET', 'POST'])
+@login_required
+def sug_posts():
+    return render_template('sug_posts.html', title='Избранное',
+                           group_id=app.config['VK_GROUP_ID'], client_id=app.config['VK_CLIENT_ID'])
+
+
 if __name__ == '__main__':
     app.run()
