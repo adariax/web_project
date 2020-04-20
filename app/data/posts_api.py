@@ -1,6 +1,7 @@
 from flask import jsonify, Blueprint, request, make_response
 from flask_login import login_required, current_user
-from flask_restful import Resource, reqparse
+from flask_restful import Resource
+from app.data.parser import fav_post_parser as parser
 
 from app.models import Post, User
 from app import get_db_session, app
@@ -12,9 +13,6 @@ blueprint = Blueprint('posts_rest_api', __name__, template_folder='templates')
 class FavPost(Resource):
     @login_required
     def post(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('post_id', required=True, type=int)
-
         post_id = parser.parse_args()['post_id']
         user_id = current_user.id
         session = get_db_session()
@@ -25,15 +23,12 @@ class FavPost(Resource):
 
     @login_required
     def delete(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('post_id', required=True, type=int)
-
         post_id = parser.parse_args()['post_id']
         user_id = current_user.id
         session = get_db_session()
         user = session.query(User).filter(User.id == user_id).first()
         post = session.query(Post).filter(Post.id == post_id).first()
-        user.favors.pop(post)
+        user.favors.remove(post)
         session.commit()
 
 

@@ -9,7 +9,8 @@ from app.forms import RegisterForm, PostForm
 
 import logging
 
-logging.basicConfig(level=logging.WARNING)
+logging.getLogger('serializer').setLevel(logging.WARNING)
+logging.basicConfig(level=logging.INFO)
 
 
 @login_manager.user_loader

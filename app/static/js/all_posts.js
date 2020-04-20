@@ -38,9 +38,16 @@ function loader() {
             let card = $(document.querySelector('template#content-block').content).children('.card').clone();
             card.children('img').attr('src', posts[n].photo_url);
             card.children('div').children('a').attr('href', 'https://vk.com/squared_fish?w=wall-112055138_' + posts[n].vk_id);
-            if (postsType === 'all') {
-                card.children('div').children('button').addClass('fav');
-                card.children('div').children('button').attr('id', (posts.length - n).toString());
+            switch (postsType) {
+                case 'all':
+                    card.children('div').children('button').addClass('fav');
+                    card.children('div').children('button').attr('id', (posts[n].id).toString());
+                    break;
+                case 'fav':
+                    card.children('div').children('button').addClass('unfav');
+                    card.children('div').children('button').attr('id', (posts[n].id).toString());
+                    card.children('div').children('button').html('Удалить из избранного');
+                    break;
             }
             if (n % 2 === 0) {
                 leftCol.append(card);
@@ -64,4 +71,19 @@ $(document).on('click', '.fav', function (event) {
         type: 'POST',
         data: {'post_id': Number(postId)}
     })
+});
+
+
+$(document).on('click', '.unfav', function (event) {
+    let targetElem = $(event.target);
+    if (targetElem.attr('class') === undefined) {
+        targetElem = targetElem.parent('.unfav')
+    }
+    let postId = targetElem.attr('id');
+    $.ajax({
+        url: `/api/favpost`,
+        type: 'DELETE',
+        data: {'post_id': Number(postId)}
+    });
+    targetElem.addClass('b-disable');
 });
