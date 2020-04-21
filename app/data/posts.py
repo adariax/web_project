@@ -48,6 +48,8 @@ def get_suggests(access_token):
         for item in items:
             if 'attachments' not in item.keys():
                 continue
+            if 'photo' not in item['attachments'][0].keys():
+                continue
             post = {
                 'vk_id': item['id'],
                 'photo_url': item['attachments'][0]['photo']['photo_807']

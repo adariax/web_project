@@ -76,7 +76,7 @@ def fav_posts():
 @app.route('/sug_posts', methods=['GET', 'POST'])
 @login_required
 def sug_posts():
-    return render_template('sug_posts.html', title='Избранное',
+    return render_template('sug_posts.html', title='Предложенные записи',
                            group_id=app.config['VK_GROUP_ID'], client_id=app.config['VK_CLIENT_ID'])
 
 

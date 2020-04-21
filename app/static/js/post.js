@@ -1,4 +1,9 @@
+let ownerId = $("#group_id").text();
+let postId = null;
 let attachment = null;
+
+window.onload = getData();
+
 let reader = new FileReader();
 let imgInput = $("#image");
 imgInput.change(function (event) {
@@ -21,15 +26,14 @@ imgInput.change(function (event) {
 
 
 function createPost() {
-    let ownerId = $("#group_id").text();
     let message = $("#description").val();
     let datetime = $('#datetime');
     let fromGroup = $('#fromGroup').is(':checked');
     let signed = $('#signed').is(':checked');
     let unix = 0;
-    if ( message === '' || attachment === null ) {
-        $('.row').remove('.alert');
-        if ((datetime.length !== 0) && !(datetime.text() === '')) {
+    if ( message !== '' || attachment !== null ) {
+        $('#contPost').remove('.alert');
+        if (datetime.length !== 0) {
             unix = getUnix(-1 * (new Date().getTimezoneOffset() / 60));
         }
         if (unix === false) {
@@ -38,19 +42,35 @@ function createPost() {
                 return
             }
         }
-        VK.Api.call('wall.post', {
-                owner_id: parseInt(ownerId, 10),
-                message: message,
-                publish_date: unix,
-                attachments: attachment,
-                from_group: Number(fromGroup),
-                signed: Number(signed),
-                v: "5.103"
-            },
-            function (r) {
-                console.log(r);
-                window.location.href = '/'
-            })
+        console.log(unix);
+        if (postId !== null) {
+            VK.Api.call('wall.post', {
+                    owner_id: Number(ownerId),
+                    message: message,
+                    publish_date: unix,
+                    attachments: attachment,
+                    from_group: Number(fromGroup),
+                    signed: Number(signed),
+                    post_id: postId,
+                    v: "5.103"
+                },
+                function () {
+                    window.location.href = '/'
+                })
+        } else {
+            VK.Api.call('wall.post', {
+                    owner_id: Number(ownerId),
+                    message: message,
+                    publish_date: unix,
+                    attachments: attachment,
+                    from_group: Number(fromGroup),
+                    signed: Number(signed),
+                    v: "5.103"
+                },
+                function () {
+                    window.location.href = '/'
+                })
+        }
     } else {
         if ($('.alert').length === 0) {
             createError('Пустой пост опубликовать невозможно')
@@ -89,4 +109,29 @@ function getUnix(tz) {
         unix = false
     });
     return unix
+}
+
+function getData() {
+    if (window.location.hash !== '') {
+        $('#contPost').removeClass('row');
+        $('#image').remove();
+        $('#fromGroup').remove();
+        $('#signed').attr("checked", "checked");
+        $('.s-button ').text('В очередь');
+
+        postId = window.location.hash.slice(1);
+        VK.Api.call('wall.getById', {
+            posts: `${ownerId}_${postId}`,
+            v: "5.103"
+        }, function (data) {
+            $("#description").text(data.response[0].text);
+
+            let image = document.createElement('img');
+            image.setAttribute('src', data.response[0].attachments[0].photo.sizes[3].url);
+            image.setAttribute('style', 'float: right; margin-top: 1vh; self-align: center');
+            $(image).insertAfter($('#description'));
+
+            attachment = `photo${ownerId}_${data.response[0].attachments[0].photo.id}`;
+        })
+    }
 }

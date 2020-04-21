@@ -103,5 +103,5 @@ $(document).on('click', '.sug', function (event) {
         targetElem = targetElem.parent('.sug')
     }
     let postId = targetElem.attr('id');
-    console.log('a');
+    window.location.href = `/post#${postId}`
 });
