@@ -6,11 +6,11 @@
         {{ form.image(id="image", class="post_info", accept="image/x-png,image/jpeg") }}
     <br>
     {% if current_user.is_admin %}
-        {{ form.datetime(data_timepicker="true", class="datepicker-here post_info", id="datetime", type="datetime") }}
+        {{ form.datetime(data_timepicker="true", class="datepicker-here post_info", id="datetime", type="datetime", placeholder="01.01.1970 00:00") }}
         <p class="post_info">{{ form.from_group( id="fromGroup" ) }} {{ form.from_group.label }}</p>
         <p class="post_info">{{ form.signed( id="signed" ) }} {{ form.signed.label }}</p>
     {% endif %}<br>
-    <button class="s-button r-pink" onclick="createPost()">Предложить пост</button>
+    <button id="post" class="s-button r-pink" onclick="createPost()">Отправить</button>
 </div>
 <script src="../static/js/post.js"></script>
 {% endblock %}
