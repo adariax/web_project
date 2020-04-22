@@ -22,6 +22,16 @@ VK_PARAMS = {
 }
 
 
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('error.html', error=error), 404
+
+
+@app.errorhandler(401)
+def login_error(error):
+    return render_template('error.html', error=error), 401
+
+
 @login_manager.user_loader
 def load_user(user_id):
     db_session = get_db_session()
