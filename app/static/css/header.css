@@ -1,8 +1,8 @@
 @import url('fonts.css');
 
-.header_text {
+.header-text {
     font-family: ljk_Applemelon;
-    font-size: 5vh; /* Nvw - N percent of the viewpoint width */
+    font-size: 45px; /* Nvw - N percent of the viewpoint width */
 
     color: #3f9bea;
 

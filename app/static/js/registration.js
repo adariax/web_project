@@ -1,9 +1,7 @@
-const domain = "https://cd50891f.ngrok.io";
-
 window.onload = registration();
 
 function vk_login() {
-    let uri = domain + '/registration';
+    let uri = window.location.hostname + '/registration';
     let clientId = $('#clientId').text();
     let login = document.getElementById('login').value;
     let encoder = new TextEncoder();
@@ -65,7 +63,7 @@ function registration() {
             $.ajax({
                 url: '/api/users',
                 type: 'POST',
-                enctype : 'multipart/form-data',
+                enctype: 'multipart/form-data',
                 data: {
                     'nickname': info['login'],
                     'accessToken': info['accessToken'],
@@ -74,6 +72,7 @@ function registration() {
             }).done(function () {
                 window.location.href = domain + '/login'
             }).fail(function () {
+                window.location.href = '/';
                 alert('Этот аккаунт уже зарегистрирован');
             });
         }

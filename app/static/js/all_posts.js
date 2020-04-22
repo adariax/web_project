@@ -79,7 +79,8 @@ $(document).on('click', '.fav', function (event) {
         url: `/api/favpost`,
         type: 'POST',
         data: {'post_id': Number(postId)}
-    })
+    });
+    targetElem.text('В избранном')
 });
 
 
@@ -95,6 +96,7 @@ $(document).on('click', '.unfav', function (event) {
         data: {'post_id': Number(postId)}
     });
     targetElem.addClass('b-disable');
+    targetElem.parents('.card').remove()
 });
 
 

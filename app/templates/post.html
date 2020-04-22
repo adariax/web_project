@@ -3,10 +3,10 @@
 {% block content %}
 <div id="contPost" class="row mt-3 border" style="background-color: white; padding: 1vw; position: relative">
         {{ form.description(class="form-control post-info", id="description", placeholder=form.description.label.text, style="width: 100%") }}
-        {{ form.image(id="image", class="post_info", accept="image/x-png,image/jpeg") }}
+        {{ form.image(id="image", class="post-info", accept="image/x-png,image/jpeg") }}
     <br>
     {% if current_user.is_admin %}
-        {{ form.datetime(data_timepicker="true", class="datepicker-here post_info", id="datetime", type="datetime", placeholder="01.01.1970 00:00") }}
+        {{ form.datetime(data_timepicker="true", class="datepicker-here post-info", id="datetime", type="datetime", placeholder="01.01.1970 00:00") }}
         <p class="post-info">{{ form.from_group( id="fromGroup" ) }} {{ form.from_group.label }}</p>
         <p class="post-info">{{ form.signed( id="signed" ) }} {{ form.signed.label }}</p>
     {% endif %}<br>

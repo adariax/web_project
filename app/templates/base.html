@@ -2,13 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
     <script src="../static/node_modules/air-datepicker/dist/js/datepicker.min.js"></script>
-    <link href="../static/node_modules/air-datepicker/dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" href="../static/img/favicon.png" >
+    <link href="../static/node_modules/air-datepicker/dist/css/datepicker.min.css" rel="stylesheet"
+          type="text/css">
+    <link rel="shortcut icon" href="../static/img/favicon.png">
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -19,34 +28,40 @@
 </head>
 <body style="background-color: rgba(197,242,255,0.25); overflow: auto;" link="#000000">
 <script type="text/javascript">
-  VK.init({
-    apiId: 	{{ client_id }}
-  });
+    VK.init({
+        apiId: {{ client_id }}
+    });
 </script>
-    <nav class="navbar navbar-light" style="background-color: #ffe753; box-shadow: 0 3px 10px rgba(17, 38, 47, 0.25);">
-      <a class="navbar-brand" href="/" style="margin-right: auto"><h1 class="header_text">{{ group_name }}</h1></a>
-        {% if current_user.is_authenticated %}
+<nav class="navbar navbar-light"
+     style="background-color: #ffe753; box-shadow: 0 3px 10px rgba(17, 38, 47, 0.25);">
+    <a class="navbar-brand" href="/" style="margin-right: auto"><h1
+            class="header-text">{{ group_name }}</h1></a>
+    {% if current_user.is_authenticated %}
         <a class="navbar-brand nickname" href="/logout">{{ current_user.nickname }}</a>
-        {% else %}
-        <p>
+    {% else %}
+        <div style="vertical-align: text-bottom">
             <a class="btn btn-primary r-pink" href="/registration">Зарегистрироваться</a>
             <a class="btn btn-primary r-blue" href="/login">Войти</a>
-        </p>
-        {% endif %}
-        <h6 hidden="true" id="groupId">{{ group_id }}</h6>
-        <h6 hidden="true" id="clientId">{{ client_id }}</h6>
-        <h6 hidden="true" id="screenName">{{ screen_name }}</h6>
-    </nav>
+        </div>
+    {% endif %}
+    <h6 hidden="true" id="groupId">{{ group_id }}</h6>
+    <h6 hidden="true" id="clientId">{{ client_id }}</h6>
+    <h6 hidden="true" id="screenName">{{ screen_name }}</h6>
+</nav>
 <div class="container wrapper">
     {% block content %}{% endblock %}
 </div>
 <footer>
-<p>
-    <a class="navbar-brand" href="https://vk.com/{{ screen_name }}">
-    <img src="../static/img/vk_logo.png" width="30" height="30" alt="VK">
-    </a>
-    <a href="https://vk.com/{{ screen_name }}" style="color: #050005">Сообщество ВКонтакте</a>
-</p>
+    <p align="center">
+        <a href="https://vk.com/{{ screen_name }}" class="post-info" style="color: #050005">
+            <img src="../static/img/vk_logo.png" width="25" height="25" alt="VK" style="vertical-align: text-bottom">
+            Сообщество ВКонтакте</a>
+    </p>
+<div class="post-info">
+    <p>Сайт сделан Калашниковой Дарьей в памках курса "Основы промышленного программирования" Яндекс.Лицея</p>
+    <p>Проект носит учебный характер</p>
+    <a href="https://github.com/ADariKa/web_project" class="post-info" style="color: #050005">Ссылка на GitHub</a>
+</div>
 </footer>
 </body>
 </html>
