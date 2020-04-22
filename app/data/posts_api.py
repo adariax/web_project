@@ -14,6 +14,15 @@ from base64 import b64decode
 
 class FavPost(Resource):
     @login_required
+    def get(self):
+        user_id = current_user.id
+        session = get_db_session()
+        user = session.query(User).filter(User.id == user_id).first()
+        posts = user.favors
+        return jsonify({'posts': [post.to_dict(only=('id', 'vk_id', 'photo_url'))
+                                  for post in posts[::-1]]})
+
+    @login_required
     def post(self):
         post_id = parser.parse_args()['post_id']
         user_id = current_user.id

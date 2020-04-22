@@ -2,6 +2,17 @@ $(document).bind("scroll", scrolling);
 
 let page = 0;
 let groupId = $('#groupId').text();
+let favPosts = [];
+$.ajax({
+        url: '/api/favpost',
+        type: 'GET',
+        async: false
+    }
+).done(function (data) {
+    for (let post of data.posts) {
+        favPosts.push(post.id)
+    }
+});
 
 window.onload = loader();
 
@@ -44,8 +55,12 @@ function loader() {
             card.children('div').children('a').attr('href', `https://vk.com/wall${groupId}_${posts[n].vk_id}`);
             switch (postsType) {
                 case 'all':
-                    card.children('div').children('button').addClass('fav');
-                    card.children('div').children('button').attr('id', (posts[n].id).toString());
+                    if (favPosts.indexOf(posts[n].id) !== -1){
+                        card.children('div').children('button').remove();
+                    } else {
+                        card.children('div').children('button').addClass('fav');
+                        card.children('div').children('button').attr('id', (posts[n].id).toString());
+                    }
                     break;
                 case 'fav':
                     card.children('div').children('button').addClass('unfav');
