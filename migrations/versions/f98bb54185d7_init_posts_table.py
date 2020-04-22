@@ -1,7 +1,7 @@
 """init posts table
 
 Revision ID: f98bb54185d7
-Revises: 62a54a871d8d
+Revises:
 Create Date: 2020-04-06 15:17:07.043682
 
 """
@@ -11,7 +11,7 @@ import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 revision = 'f98bb54185d7'
-down_revision = '62a54a871d8d'
+down_revision = None
 branch_labels = None
 depends_on = None
 

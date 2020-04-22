@@ -24,7 +24,7 @@
   });
 </script>
     <nav class="navbar navbar-light" style="background-color: #ffe753; box-shadow: 0 3px 10px rgba(17, 38, 47, 0.25);">
-      <a class="navbar-brand" href="/" style="margin-right: auto"><h1 class="header_text">Селёдка²</h1></a>
+      <a class="navbar-brand" href="/" style="margin-right: auto"><h1 class="header_text">{{ group_name }}</h1></a>
         {% if current_user.is_authenticated %}
         <a class="navbar-brand nickname" href="/logout">{{ current_user.nickname }}</a>
         {% else %}
@@ -35,16 +35,17 @@
         {% endif %}
         <h6 hidden="true" id="group_id">{{ group_id }}</h6>
         <h6 hidden="true" id="client_id">{{ client_id }}</h6>
+        <h6 hidden="true" id="screenName">{{ screen_name }}</h6>
     </nav>
 <div class="container wrapper">
     {% block content %}{% endblock %}
 </div>
 <footer>
 <p>
-    <a class="navbar-brand" href="https://vk.com/squared_fish">
+    <a class="navbar-brand" href="https://vk.com/{{ screen_name }}">
     <img src="../static/img/vk_logo.png" width="30" height="30" alt="VK">
     </a>
-    <a href="https://vk.com/squared_fish" style="color: #050005">Сообщество ВКонтакте</a>
+    <a href="https://vk.com/{{ screen_name }}" style="color: #050005">Сообщество ВКонтакте</a>
 </p>
 </footer>
 </body>

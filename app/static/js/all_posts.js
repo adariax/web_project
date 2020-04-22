@@ -1,6 +1,7 @@
 $(document).bind("scroll", scrolling);
 
 let page = 0;
+let screenName = $('#screenName').text();
 
 window.onload = loader();
 
@@ -40,7 +41,7 @@ function loader() {
             }
             let card = $(document.querySelector('template#content-block').content).children('.card').clone();
             card.children('img').attr('src', posts[n].photo_url);
-            card.children('div').children('a').attr('href', 'https://vk.com/squared_fish?w=wall-112055138_' + posts[n].vk_id);
+            card.children('div').children('a').attr('href', `https://vk.com/${screenName}?w=wall-112055138_` + posts[n].vk_id);
             switch (postsType) {
                 case 'all':
                     card.children('div').children('button').addClass('fav');

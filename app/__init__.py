@@ -9,6 +9,9 @@ from config import DevConfig
 app = Flask(__name__)
 app.config.from_object(DevConfig)
 
+from .data.group_info_to_config import get_info
+app.config['VK_GROUP_NAME'], app.config['VK_SCREEN_NAME'] = get_info(app.config)
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
@@ -25,7 +28,7 @@ def get_db_session() -> db.Session:
 
 login_manager = LoginManager(app)
 
-from app.data import posts_api, users_api
+from app.data import posts_api, users_api, posts_callback
 
 api = Api(app)
 api.add_resource(users_api.UsersResource, '/api/users')
@@ -33,3 +36,7 @@ api.add_resource(posts_api.FavPost, '/api/favpost')
 
 app.register_blueprint(users_api.blueprint)
 app.register_blueprint(posts_api.blueprint)
+app.register_blueprint(posts_callback.blueprint)
+
+from loading_posts import load_posts
+load_posts()

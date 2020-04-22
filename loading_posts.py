@@ -2,9 +2,10 @@ def load_posts():
     from requests import get
     from app import get_db_session
     from app.models import Post
-    import app
+    from app import app
 
-    ACCESS_TOKEN = app.app.config['VK_ACCESS_TOKEN']
+    ACCESS_TOKEN = app.config['ACCESS_TOKEN']
+    VK_GROUP_ID = app.config['VK_GROUP_ID']
     VK_API_URL = "https://api.vk.com/method/"
     METHOD = 'wall.get'
 
@@ -16,7 +17,7 @@ def load_posts():
     posts = []
 
     while True:
-        params = {'owner_id': '-112055138',
+        params = {'owner_id': VK_GROUP_ID,
                   'extended': '1',
                   'count': '100',
                   'filter': 'all',
@@ -34,7 +35,6 @@ def load_posts():
         for item in items:
             if item['id'] in vk_ids:
                 session.commit()
-                print('Post was successfully added into a database')
                 return
             if 'attachments' not in item.keys():
                 continue

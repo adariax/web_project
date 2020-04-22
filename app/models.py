@@ -1,7 +1,6 @@
-from app import db
+from app import db, app
 from flask_login import UserMixin
 from sqlalchemy_serializer import SerializerMixin
-from werkzeug.security import check_password_hash, generate_password_hash
 
 fav_posts = db.Table('favorites',
                      db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
@@ -9,24 +8,13 @@ fav_posts = db.Table('favorites',
                      )
 
 
-class Palette(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.String, nullable=False)
-    slug = db.Column(db.String, index=True, unique=True, nullable=False)
-    colors = db.Column(db.String, index=True)
-
-    def __repr__(self):
-        return '<Palette {}>'.format(self.title)
-
-
 class Post(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     vk_id = db.Column(db.Integer, index=True, nullable=False)
     photo_url = db.Column(db.String, nullable=False)
-    palette = db.Column(db.Integer, db.ForeignKey('palette.id'))
 
     def __repr__(self):
-        return '<Post {} on https://vk.com/squared_fish>'.format(self.vk_id)
+        return '<Post {} on https://vk.com/{}>'.format(self.vk_id, app.config['VK_GROUP_SCREEN_NAME'])
 
 
 class User(db.Model, UserMixin, SerializerMixin):
