@@ -1,4 +1,4 @@
-let ownerId = $("#group_id").text();
+let ownerId = $("#groupId").text();
 let postId = null;
 let attachment = null;
 

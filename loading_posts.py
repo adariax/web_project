@@ -1,30 +1,25 @@
-def load_posts():
+def load_posts(access_token, group_id, session):
     from requests import get
-    from app import get_db_session
     from app.models import Post
-    from app import app
 
-    ACCESS_TOKEN = app.config['ACCESS_TOKEN']
-    VK_GROUP_ID = app.config['VK_GROUP_ID']
-    VK_API_URL = "https://api.vk.com/method/"
-    METHOD = 'wall.get'
+    vk_api_url = "https://api.vk.com/method/"
+    method = 'wall.get'
 
     is_empty = lambda items: False if items else True
 
-    session = get_db_session()
     vk_ids = list(map(lambda vk_id: vk_id[0], session.query(Post.vk_id)))
     items, offset = None, 0
     posts = []
 
     while True:
-        params = {'owner_id': VK_GROUP_ID,
+        params = {'owner_id': group_id,
                   'extended': '1',
                   'count': '100',
                   'filter': 'all',
                   'offset': offset,
-                  'access_token': ACCESS_TOKEN,
+                  'access_token': access_token,
                   'v': '5.2'}
-        items = get(VK_API_URL + METHOD, params=params).json()['response']['items']
+        items = get(vk_api_url + method, params=params).json()['response']['items']
 
         if is_empty(items):
             for post in posts[::-1]:

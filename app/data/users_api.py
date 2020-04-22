@@ -2,7 +2,7 @@ from flask import jsonify, Blueprint, make_response
 from flask_restful import Resource
 from flask_login import current_user
 
-from app import get_db_session
+from app import get_db_session, app
 from app.models import User
 from app.data.parser import user_parser as parser
 from app.data.user import is_admin
@@ -21,7 +21,8 @@ class UsersResource(Resource):
             nickname=arg['nickname'],
             vk_domain=arg['vkDomain'],
             access_token=arg['accessToken'],
-            is_admin=is_admin(arg['vkDomain'], arg['accessToken'])
+            is_admin=is_admin(arg['vkDomain'], arg['accessToken'],
+                              int(app.config['VK_GROUP_ID'][1:]))
         )
         session.add(user)
         session.commit()

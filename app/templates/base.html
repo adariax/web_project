@@ -20,7 +20,7 @@
 <body style="background-color: rgba(197,242,255,0.25); overflow: auto;" link="#000000">
 <script type="text/javascript">
   VK.init({
-    apiId: 	7417095
+    apiId: 	{{ client_id }}
   });
 </script>
     <nav class="navbar navbar-light" style="background-color: #ffe753; box-shadow: 0 3px 10px rgba(17, 38, 47, 0.25);">
@@ -33,8 +33,8 @@
             <a class="btn btn-primary r-blue" href="/login">Войти</a>
         </p>
         {% endif %}
-        <h6 hidden="true" id="group_id">{{ group_id }}</h6>
-        <h6 hidden="true" id="client_id">{{ client_id }}</h6>
+        <h6 hidden="true" id="groupId">{{ group_id }}</h6>
+        <h6 hidden="true" id="clientId">{{ client_id }}</h6>
         <h6 hidden="true" id="screenName">{{ screen_name }}</h6>
     </nav>
 <div class="container wrapper">

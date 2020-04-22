@@ -4,12 +4,13 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_restful import Api
 
+from .data.group_info_to_config import get_info
+
 from config import DevConfig
 
 app = Flask(__name__)
 app.config.from_object(DevConfig)
 
-from .data.group_info_to_config import get_info
 app.config['VK_GROUP_NAME'], app.config['VK_SCREEN_NAME'] = get_info(app.config)
 
 db = SQLAlchemy(app)
@@ -37,6 +38,3 @@ api.add_resource(posts_api.FavPost, '/api/favpost')
 app.register_blueprint(users_api.blueprint)
 app.register_blueprint(posts_api.blueprint)
 app.register_blueprint(posts_callback.blueprint)
-
-from loading_posts import load_posts
-load_posts()

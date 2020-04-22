@@ -7,6 +7,10 @@ from app.forms import RegisterForm, PostForm
 
 import logging
 
+from loading_posts import load_posts
+
+load_posts(app.config['ACCESS_TOKEN'], app.config['VK_GROUP_ID'], get_db_session())
+
 logging.getLogger('serializer').setLevel(logging.WARNING)
 logging.basicConfig(level=logging.INFO)
 

@@ -10,7 +10,7 @@ class RegisterForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
-    image = FileField(u'Image File', validators=[FileRequired(), FileAllowed(['jpg', 'png'])])
+    image = FileField('Изображене', validators=[FileRequired(), FileAllowed(['jpg', 'png'])])
     description = TextAreaField('Введите текст публикации')
     datetime = DateTimeField('Дата публикации')
     from_group = BooleanField('От имени группы')

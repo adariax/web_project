@@ -4,7 +4,7 @@ window.onload = registration();
 
 function vk_login() {
     let uri = domain + '/registration';
-    let clientId = $('#client_id').text();
+    let clientId = $('#clientId').text();
     let login = document.getElementById('login').value;
     let encoder = new TextEncoder();
     let uint8Array = encoder.encode(login);

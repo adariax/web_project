@@ -1,8 +1,10 @@
+import requests
+from app import app
+
 VK_API_URL = "https://api.vk.com/method/"
 
 
 def get_attachment(access_token, data, group_id, user_id):
-    import requests
 
     upload_server = requests.get(VK_API_URL + 'photos.getWallUploadServer', params={
         'group_id': group_id,
@@ -26,10 +28,9 @@ def get_attachment(access_token, data, group_id, user_id):
 
 
 def get_suggests(access_token):
-    import requests
-    from app import app
 
     is_empty = lambda items: False if items else True
+
     items, offset = None, 0
     posts = []
 

@@ -14,7 +14,8 @@ class Post(db.Model, SerializerMixin):
     photo_url = db.Column(db.String, nullable=False)
 
     def __repr__(self):
-        return '<Post {} on https://vk.com/{}>'.format(self.vk_id, app.config['VK_GROUP_SCREEN_NAME'])
+        return '<Post {} on https://vk.com/{}>'.format(self.vk_id,
+                                                       app.config['VK_GROUP_SCREEN_NAME'])
 
 
 class User(db.Model, UserMixin, SerializerMixin):
