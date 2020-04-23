@@ -27,7 +27,7 @@ function validate() {
     }
 
     $.ajax({
-            url: `/api/user/login/${login}`,
+            url: `/api/user/nickname/${login}`,
             type: 'GET',
         }
     ).done(function () {

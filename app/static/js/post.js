@@ -7,6 +7,7 @@ window.onload = getData();
 let reader = new FileReader();
 let imgInput = $("#image");
 let button = $('#post');
+
 imgInput.change(function (event) {
     button.text('Дождитесь окончания загрузки');
     button.prop('disabled', true);
@@ -36,13 +37,13 @@ function createPost() {
     let datetime = $('#datetime');
     let fromGroup = $('#fromGroup').is(':checked');
     let signed = $('#signed').is(':checked');
-    let unix = 0;
+    let unix = null;
     if (message !== '' || attachment !== null) {
         $('#contPost').remove('.alert');
         if (datetime.length !== 0) {
             unix = getUnix(-1 * (new Date().getTimezoneOffset() / 60));
         }
-        if (unix < Number((new Date().getTime()).toString().slice(0, 10))) {
+        if (unix != null && unix < Number((new Date().getTime()).toString().slice(0, 10))) {
             if ($('.alert').length === 0) {
                 createError('Неверный формат ввода даты/времени публикации');
             }

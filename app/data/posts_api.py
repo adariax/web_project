@@ -15,6 +15,10 @@ from base64 import b64decode
 class FavPost(Resource):
     @login_required
     def get(self):
+        """
+        :return: object with list of fav posts
+        """
+
         user_id = current_user.id
         session = get_db_session()
         user = session.query(User).filter(User.id == user_id).first()
@@ -24,6 +28,13 @@ class FavPost(Resource):
 
     @login_required
     def post(self):
+        """
+        Getting obj with group id from the request;
+        Getting current user's id;
+
+        Add to the favorites table association user-post.
+        """
+
         post_id = parser.parse_args()['post_id']
         user_id = current_user.id
         session = get_db_session()
@@ -34,6 +45,13 @@ class FavPost(Resource):
 
     @login_required
     def delete(self):
+        """
+        Getting obj with group id from the request;
+        Getting current user's id;
+
+        Delete from favorites table association user-post with.
+        """
+
         post_id = parser.parse_args()['post_id']
         user_id = current_user.id
         session = get_db_session()
@@ -48,8 +66,16 @@ blueprint = Blueprint('posts_rest_api', __name__, template_folder='templates')
 
 @blueprint.route('/api/posts')
 def get_posts():
+    """
+    :return: obj with list of posts
+
+    Type of posts is selected based on the type of page, from which the request was received.
+    """
+
     session = get_db_session()
     post_type = request.args.get('type')
+
+    posts = []
     if post_type == 'all':
         posts = session.query(Post).all()
     elif post_type == 'fav':
@@ -61,8 +87,16 @@ def get_posts():
 
 
 @blueprint.route('/api/posts/unixtime_<date>_<time>_<tz>')
-@login_required
 def get_unix(date, time, tz):
+    """
+    :param date: date in format DD-MM-YYYY
+    :param time: time in format MM-HH
+    :param tz: time zone - delta of GTM // For Barnaul it's 7, for Silicon Valley it's -7
+    :return: obj with str of unixtime
+
+    If incorrect format --> handler return 400 response.
+    """
+
     try:
         hours, minutes = map(int, time.split(':'))
         day, month, year = map(int, date.split('.'))
@@ -76,6 +110,10 @@ def get_unix(date, time, tz):
 @blueprint.route('/api/posts/picture', methods=['POST'])
 @login_required
 def get_picture():
+    """
+    :return: obj with str of attachment
+    """
+
     data_img = request.form.get('image').split(',')
     img_format = data_img[0].split('/')[1].split(';')[0]
     img_content = b64decode(data_img[1])

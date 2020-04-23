@@ -1,4 +1,14 @@
 class Config(object):
+    """
+    SECRET KEY -- The protected key from VK WEB APP settings
+
+    CLIENT ID -- VK WEB APP ID
+
+    ACCESS TOKEN -- Service access key from VK WEB APP
+
+    VK GROUP ID -- ID of group you want to use for site
+    """
+
     FLASK_APP = 'main.py'
 
     SECRET_KEY = ''

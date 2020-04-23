@@ -9,11 +9,13 @@ import logging
 
 from loading_posts import load_posts
 
+# loading all posts from the group wall
 load_posts(app.config['ACCESS_TOKEN'], app.config['VK_GROUP_ID'], get_db_session())
 
 logging.getLogger('serializer').setLevel(logging.WARNING)
 logging.basicConfig(level=logging.INFO)
 
+# static params for pages templates
 VK_PARAMS = {
     'group_id': app.config['VK_GROUP_ID'],
     'client_id': app.config['CLIENT_ID'],
