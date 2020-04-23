@@ -61,7 +61,8 @@ def login():
         user = db_session.query(User).filter(User.vk_domain == args.get('uid')).first()
         if not user:
             return render_template('login.html', title='Вход',
-                                   message="Такой пользователь не зарегистрирован")
+                                   message="Такой пользователь не зарегистрирован",
+                                   **VK_PARAMS)
         login_user(user)
         return redirect("/")
     return render_template('login.html', title='Вход', **VK_PARAMS)

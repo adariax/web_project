@@ -70,7 +70,7 @@ function registration() {
                     'vkDomain': info['vkDomain'],
                 }
             }).done(function () {
-                window.location.href = window.location.hostname + '/login'
+                window.location.href = '/login'
             }).fail(function () {
                 window.location.href = '/';
                 alert('Этот аккаунт уже зарегистрирован');

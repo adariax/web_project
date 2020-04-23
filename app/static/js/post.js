@@ -49,6 +49,7 @@ function createPost() {
             }
             return
         }
+        unix = 0;
         let params = {
             owner_id: Number(ownerId),
             message: message,
@@ -63,7 +64,6 @@ function createPost() {
         }
         VK.Api.call('wall.post', params,
             function (resp) {
-            console.log(resp.error);
                 if (resp.error === undefined){
                     window.location.href = '/'
                 }

@@ -13,6 +13,8 @@ def load_posts(access_token, group_id, session):
     vk_api_url = "https://api.vk.com/method/"
     method = 'wall.get'
 
+    vk_ids = list(map(lambda vk_id: vk_id[0], session.query(Post.vk_id)))
+
     # checking if items is empty --> there no posts
     is_empty = lambda items: False if items else True
 
@@ -37,6 +39,9 @@ def load_posts(access_token, group_id, session):
             print('Posts were successfully added into a database')
             return
         for item in items:
+            if item['id'] in vk_ids:
+                session.commit()
+                return
 
             # app needs only non-text posts
             if 'attachments' not in item.keys():
